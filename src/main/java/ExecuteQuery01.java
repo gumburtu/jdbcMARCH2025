@@ -36,6 +36,34 @@ public class ExecuteQuery01 {
             System.out.println("Ulke adi : " + rs1.getString("country_name"));
             System.out.println("Ulke adu : " + rs1.getString(1));
         }
+        //ÖRNEK 2: phone_code'u 200 den büyük olan ülkelerin "phone_code" ve "country_name" bilgisini listeleyiniz.
+
+
+        ResultSet rs2 = st.executeQuery("SELECT phone_code,country_name FROM countries WHERE phone_code>200 ORDER BY phone_code");
+
+        while (rs2.next()) {
+
+            System.out.println("Ülke adı : " + rs2.getString("country_name") +
+                    "  --- telefon kodu : " + rs2.getInt("phone_code"));
+
+//            System.out.println("Ülke adı : "+rs2.getString(2)+
+//                    "  --- telefon kodu : "+rs2.getInt(1));
+
+        }
+
+        //ÖRNEK 3:developers tablosunda "salary" değeri minimum olan developerların tüm bilgilerini gösteriniz.
+        System.out.println("---------------ÖRNEK 3------------------------");
+        ResultSet rs3=
+                st.executeQuery("SELECT * FROM developers " +
+                        "WHERE salary=(SELECT MIN(salary) FROM developers)");
+
+        while (rs3.next()){
+            System.out.println("id : "+rs3.getInt("id")+
+                    "--- isim : "+rs3.getString("name")+
+                    "--- maaş : "+rs3.getDouble("salary")+
+                    "--- prog. dili : "+rs3.getString("prog_lang") );
+        }
+
         //n05
         st.close();
         connection.close();
