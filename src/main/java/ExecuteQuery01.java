@@ -63,7 +63,16 @@ public class ExecuteQuery01 {
                     "--- maaş : " + rs3.getDouble("salary") +
                     "--- prog. dili : " + rs3.getString("prog_lang"));
         }
+        //ÖDEV:Puanı taban puanlarının(bolumler) ortalamasından yüksek olan öğrencilerin isim ve
+        // puanlarını listeleyiniz.
+        ResultSet rs4 = st.executeQuery("SELECT isim,puan FROM ogrenciler" +
+                " WHERE puan > (SELECT AVG(taban_puani) FROM bolumler ) ORDER BY puan DESC");
+        while (rs4.next()) {
 
+            System.out.println("isim: " + rs4.getString("isim") + "---- puanı: "
+                    + rs4.getInt("puan"));
+
+        }
         //n05
         st.close();
         connection.close();
