@@ -53,15 +53,15 @@ public class ExecuteQuery01 {
 
         //ÖRNEK 3:developers tablosunda "salary" değeri minimum olan developerların tüm bilgilerini gösteriniz.
         System.out.println("---------------ÖRNEK 3------------------------");
-        ResultSet rs3=
+        ResultSet rs3 =
                 st.executeQuery("SELECT * FROM developers " +
                         "WHERE salary=(SELECT MIN(salary) FROM developers)");
 
-        while (rs3.next()){
-            System.out.println("id : "+rs3.getInt("id")+
-                    "--- isim : "+rs3.getString("name")+
-                    "--- maaş : "+rs3.getDouble("salary")+
-                    "--- prog. dili : "+rs3.getString("prog_lang") );
+        while (rs3.next()) {
+            System.out.println("id : " + rs3.getInt("id") +
+                    "--- isim : " + rs3.getString("name") +
+                    "--- maaş : " + rs3.getDouble("salary") +
+                    "--- prog. dili : " + rs3.getString("prog_lang"));
         }
 
         //n05
